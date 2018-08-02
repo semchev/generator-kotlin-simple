@@ -1,0 +1,45 @@
+buildscript {
+    ext.kotlin_version = '<%= kotlinVersion %>'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+group = projectGroup
+version = projectVersion
+
+apply plugin: 'kotlin'<% if(runnableJar) { %>
+apply plugin: 'application'<% } %>
+<% if(runnableJar) { %>
+mainClassName = "<%= mainClassName %>"
+<% } %>
+sourceCompatibility = '<%= jvmVersion %>'
+targetCompatibility = '<%= jvmVersion %>'
+
+compileKotlin {
+    kotlinOptions.jvmTarget = <%= jvmVersion %>
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = <%= jvmVersion %>
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {<% if(stdlib) { %>
+    implementation "org.jetbrains.kotlin:<%= stdlibVersion %>:$kotlin_version"<% } %>
+}
+<% if(runnableJar) { %>
+jar {
+    manifest {
+        attributes 'Main-Class': '<%= mainClassName %>'
+    }<% if(fatJar) { %>
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }<% } %>
+}<% } %>
