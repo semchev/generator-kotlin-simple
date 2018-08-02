@@ -1,36 +1,13 @@
 const Generator = require('yeoman-generator');
-const request = require('request-promise-native');
+const latest = require('./common/fetch-versions.js');
 
 module.exports = class extends Generator {
     constructor(args, opts) {
         super(args, opts);
     }
 
-    fetchLatestKotlin() {
-        const kotlinDefaultFallback = '1.2.51';
-        const kotlinDefaultQuery =
-              'https://search.maven.org/solrsearch/select?q=g:org.jetbrains.kotlin%20AND%20a:kotlin-project&wt=json'
-
-        const kotlinDefaultErr = () => {
-            this.log('Unable to find latest kotlin version automatically, defaulting to ' + kotlinDefaultFallback);
-            this.kotlinDefault = kotlinDefaultFallback;
-        }
-
-        return request(kotlinDefaultQuery)
-            .then(body => {
-                const result = JSON.parse(body);
-                if(result.response.docs.length < 1){
-                    kotlinDefaultErr(); return;
-                }
-                this.kotlinDefault = result.response.docs[0].latestVersion;
-            })
-            .catch((err) => {
-                kotlinDefaultErr(); return;
-            });
-    }
-
     prompting() {
-        return this.fetchLatestKotlin().then(() => {
+        return latest.kotlin.fetch(this).then(() => {
             return this.prompt([{
                 type: 'input',
                 name: 'name',
