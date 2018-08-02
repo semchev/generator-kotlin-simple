@@ -10,6 +10,8 @@
     ],
     "author": "semchev",
     "license": "MIT",
+    "repository": "https://github.com/semchev/generator-kotlin-simple",
+    "website": "https://github.com/semchev/generator-kotlin-simple/blob/master/README.md",
     "dependencies": {
         "request": "^2.87.0",
         "request-promise-native": "^1.0.5",
