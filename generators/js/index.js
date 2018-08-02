@@ -25,7 +25,7 @@ module.exports = class extends Generator {
                 default: this.kotlinDefault
             }, {
                 type: 'confirm',
-                name: 'includeStdlib',
+                name: 'includeStdLib',
                 message: 'Would you like to include the Kotlin Standard Library?'
             }, {
                 type: 'list',
@@ -50,7 +50,8 @@ module.exports = class extends Generator {
                 kotlinVersion: this.answers.kotlinVersion,
                 rootPackage: this.answers.rootPackage,
                 version: this.answers.version,
-                nodeOrWeb: this.answers.nodeOrWeb
+                nodeOrWeb: this.answers.nodeOrWeb,
+                includeStdLib: this.answers.includeStdLib
             }
         );
 

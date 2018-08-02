@@ -16,10 +16,11 @@ apply plugin: 'kotlin2js'
 repositories {
     mavenCentral()
 }
-
+<% if (includeStdLib)>
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
 }
+<% } %>
 
 task assembleWeb(type: Sync) {
     configurations.compile.each { File file ->
