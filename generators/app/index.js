@@ -1,4 +1,5 @@
 const Generator = require('yeoman-generator');
+const execSync = require('child_process').execSync;
 const latest = require('./common/fetch-versions.js');
 
 module.exports = class extends Generator {
@@ -104,5 +105,9 @@ module.exports = class extends Generator {
                 rootPackage: this.answers.rootPackage
             }
         );
+
+        // Generating gradle wrapper
+        this.log('Generating gradle wrapper');
+        execSync('gradle wrapper');
     }
 };
