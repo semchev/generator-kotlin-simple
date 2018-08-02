@@ -9,14 +9,14 @@ buildscript {
 }
 
 group '<%= rootPackage %>'
-version '<%= version %>'
+version '0.1.0-SNAPSHOT'
 
 apply plugin: 'kotlin2js'
 
 repositories {
     mavenCentral()
 }
-<% if (includeStdLib) %>
+<% if (includeStdLib) { %>
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
 }
