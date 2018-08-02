@@ -13,8 +13,15 @@ not having the stdlib, etc).
 ## Usage
 `yo kotlin-simple`
 
+This will default to the JVM target.
+
 The prompts are unassuming (there are many), so you only end up with what you need, but with reasonable defaults aimed to
 avoid common pitfalls if you spam the return key.
+
+### JS Target
+`yo kotlin-simple:js`
+
+This will begin generating a Kotlin2JS project.
 
 ## Features
 - Generate a gradle-based JVM-targeting kotlin application.
@@ -28,7 +35,6 @@ goal of keeping reasonable defaults for most common uses, but flexibility where 
 
 ### Future Updates Planned (not in order):
 - Prompt for reflection libs
-- JavaScript-targetting generator
 - Kotlin-Native generator
 - Ktor scaffolding for a variety of project types, with other useful supplementary libs (JSON, requests, IOC/DE)
 - Configuration storage
