@@ -63,6 +63,7 @@ module.exports = class extends Generator {
    
     configuring() {
         this.rootPackagePath = 'src/main/kotlin/' + this.answers.rootPackage.replace(/\./g, '/');
+        this.rootTestPath = 'src/test/kotlin/' + this.answers.rootPackage.replace(/\./g, '/');
     }
 
     writing() {
@@ -91,7 +92,7 @@ module.exports = class extends Generator {
             }
         );
 
-        // Generate settings.gradle
+        // Generate settings.gradle.
         this.fs.copy(
             this.templatePath('settings.gradle'),
             this.destinationPath('settings.gradle')
@@ -106,8 +107,13 @@ module.exports = class extends Generator {
             }
         );
 
-        // Generating gradle wrapper
-        this.log('Generating gradle wrapper');
+        // Generating test directory.
+        this.fs.copy(
+            this.templatePath('MainTest.kt'),
+            this.destinationPath(this.rootTestPath + '/MainTest.kt')
+        );
+        
+        // Generating gradle wrapper.
         execSync('gradle wrapper');
     }
 };
