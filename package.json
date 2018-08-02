@@ -6,7 +6,8 @@
         "generators"
     ],
     "keywords": [
-        "yeoman-generator"
+        "yeoman-generator",
+        "kotlin"
     ],
     "author": "semchev",
     "license": "MIT",
